@@ -35,3 +35,80 @@
 ---
 
 These pillars form the foundation of OOP and help in designing clean, scalable, and maintainable software systems.
+
+In **Object-Oriented Programming (OOP)** in **JavaScript**, the `get` and `set` methods are **special methods** used to define accessors for an object's properties. These are often used to control how values are read from or written to an object, typically providing a layer of abstraction, validation, or computed logic.
+
+---
+
+### 🔹 `get` Method
+
+The `get` method is used to **define a getter** for a property. It allows you to retrieve a property value like you're accessing a regular property, but it actually runs a function.
+
+**Syntax:**
+
+```javascript
+get propertyName() {
+  // return a value
+}
+```
+
+---
+
+### 🔹 `set` Method
+
+The `set` method is used to **define a setter** for a property. It allows you to set a property value like it's a normal assignment, but it actually runs a function.
+
+**Syntax:**
+
+```javascript
+set propertyName(value) {
+  // do something with the value
+}
+```
+
+---
+
+### ✅ Example
+
+```javascript
+class Person {
+  constructor(name) {
+    this._name = name; // use an internal property
+  }
+
+  get name() {
+    console.log("Getter called");
+    return this._name;
+  }
+
+  set name(newName) {
+    console.log("Setter called");
+    if (newName.length >= 2) {
+      this._name = newName;
+    } else {
+      console.log("Name too short");
+    }
+  }
+}
+
+const p = new Person("Alice");
+console.log(p.name);    // "Getter called" -> "Alice"
+
+p.name = "Bo";          // "Setter called" (and accepted)
+console.log(p.name);    // "Bo"
+
+p.name = "A";           // "Setter called" -> "Name too short"
+console.log(p.name);    // Still "Bo"
+```
+
+---
+
+### 🧠 Why Use `get` and `set`?
+
+* Encapsulation: hide internal logic
+* Validation: ensure only valid values are set
+* Computed properties: dynamically calculate values
+* Intercept and control property access
+
+---
+
